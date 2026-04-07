@@ -35,7 +35,12 @@ export default function Login() {
             localStorage.setItem("token", data.access_token)
             localStorage.setItem("username", data.user_name)
             localStorage.setItem("user_rol", data.user_role)
-            navigate("/")
+            if (data.user_role==="admin") {
+                navigate("/")
+            }else{
+                navigate("/cliente")
+            }
+            
         } catch (error) {
             console.log(error)
         }
