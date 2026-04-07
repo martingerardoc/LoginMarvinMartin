@@ -4,6 +4,7 @@ export default function Home() {
     const [pedidos, setPedidos] = useState([])
     const nombre = localStorage.getItem("username")
     const navigate = useNavigate()
+    const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null)
     function salir() {
         localStorage.clear()
         navigate("/Login")
@@ -51,6 +52,21 @@ export default function Home() {
             </header>
 
             {/* Content */}
+            <div className="flex gap-4 mb-6">
+                <button
+                    onClick={() => navigate("/productos")}
+                    className="bg-blue-600 px-4 py-2 rounded"
+                >
+                    Ver Productos
+                </button>
+
+                <button
+                    onClick={() => navigate("/productos/nuevo")}
+                    className="bg-green-600 px-4 py-2 rounded"
+                >
+                    Crear Producto
+                </button>
+            </div>
             <main className="px-6 py-8 max-w-6xl mx-auto">
                 <div className="mb-6">
                     <h2 className="text-2xl font-bold text-white">Pedidos</h2>
@@ -62,12 +78,13 @@ export default function Home() {
                         const statusColor = info.status === "completed"
                             ? "text-green-400 bg-green-400/10 border-green-400/20"
                             : info.status === "pending"
-                            ? "text-yellow-400 bg-yellow-400/10 border-yellow-400/20"
-                            : "text-blue-400 bg-blue-400/10 border-blue-400/20"
+                                ? "text-yellow-400 bg-yellow-400/10 border-yellow-400/20"
+                                : "text-blue-400 bg-blue-400/10 border-blue-400/20"
 
                         return (
                             <div
                                 key={index}
+                                onClick={() => setPedidoSeleccionado(info)}
                                 className="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-slate-600 hover:shadow-lg hover:shadow-black/30 transition-all duration-200 cursor-pointer"
                             >
                                 <div className="flex items-start justify-between mb-4">
@@ -91,6 +108,33 @@ export default function Home() {
                     })}
                 </div>
             </main>
+            {pedidoSeleccionado && (
+  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+    
+    <div className="bg-slate-900 p-6 rounded-xl w-full max-w-md border border-slate-700">
+      
+      <h3 className="text-lg font-bold mb-4">Detalle del Pedido</h3>
+
+      <p className="text-slate-400 text-sm">Usuario</p>
+      <p className="mb-3">{pedidoSeleccionado.user_id}</p>
+
+      <p className="text-slate-400 text-sm">Total</p>
+      <p className="mb-4">${pedidoSeleccionado.total}</p>
+
+      <p className="text-slate-400 text-sm">Estado</p>
+      <p className="mb-4">{pedidoSeleccionado.status}</p>
+
+      <button
+        onClick={() => setPedidoSeleccionado(null)}
+        className="w-full mt-4 bg-blue-600 py-2 rounded-lg"
+      >
+        Cerrar
+      </button>
+
+    </div>
+  </div>
+)}
         </div>
+        
     )
 }
