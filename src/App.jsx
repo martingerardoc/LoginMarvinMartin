@@ -4,6 +4,9 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import ClienteHome from './pages/ClienteHome'
+import { AdminProvider } from './context/useAdminContext'
+
+
 export default function App() {
 
   function PrivateRouteCliente({ children }) {
@@ -26,7 +29,13 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<PrivateRouteAdministrador><Home /></PrivateRouteAdministrador>}></Route>
+          <Route path='/*' element={
+            <PrivateRouteAdministrador>
+              <AdminProvider>
+                <Home />
+              </AdminProvider>
+            </PrivateRouteAdministrador>
+              }></Route>
         <Route path='/cliente' element={<PrivateRouteCliente><ClienteHome /></PrivateRouteCliente>}></Route>
         <Route path='/Login' element={<Login />}></Route>
       </Routes>
