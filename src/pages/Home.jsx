@@ -66,32 +66,6 @@ export default function Home() {
                     <Route path="/usuarios" element={<Usuarios/>}></Route>
                 </Routes>
             </main>
-            {pedidoSeleccionado && (
-  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-    
-    <div className="bg-slate-900 p-6 rounded-xl w-full max-w-md border border-slate-700">
-      
-      <h3 className="text-lg font-bold mb-4">Detalle del Pedido</h3>
-
-      <p className="text-slate-400 text-sm">Usuario</p>
-      <p className="mb-3">{pedidoSeleccionado.user_id}</p>
-
-      <p className="text-slate-400 text-sm">Total</p>
-      <p className="mb-4">${pedidoSeleccionado.total}</p>
-
-      <p className="text-slate-400 text-sm">Estado</p>
-      <p className="mb-4">{pedidoSeleccionado.status}</p>
-
-      <button
-        onClick={() => setPedidoSeleccionado(null)}
-        className="w-full mt-4 bg-blue-600 py-2 rounded-lg"
-      >
-        Cerrar
-      </button>
-
-    </div>
-  </div>
-)}
         </div>
         
     )
