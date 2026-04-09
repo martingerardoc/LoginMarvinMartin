@@ -16,8 +16,6 @@ export default function Carrito() {
     setCarrito(nuevo)
     localStorage.setItem("carrito", JSON.stringify(nuevo))
   }
-
-  // 🔥 👉 ACÁ VA TU FUNCIÓN
   async function comprar() {
     const carrito = JSON.parse(localStorage.getItem("carrito")) || []
 
@@ -39,7 +37,7 @@ export default function Carrito() {
 
     localStorage.removeItem("carrito")
     alert("Compra realizada")
-    setCarrito([]) // 🔥 limpia la UI
+    setCarrito([]) 
   }
 
   return (
@@ -64,7 +62,6 @@ export default function Carrito() {
           </div>
         ))}
 
-        {/* 🔥 BOTÓN QUE USA comprar() */}
         <button
           onClick={comprar}
           className="mt-6 bg-green-600 px-4 py-2 rounded"
