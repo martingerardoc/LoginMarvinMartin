@@ -9,6 +9,16 @@ import Carrito from "./pages/Carrito"
 import MisOrdenes from "./pages/MisOrdenes"
 
 import PrivateRoute from "./routes/PrivateRoute"
+import React from 'react'
+import { useState } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import Login from './pages/Login'
+import Home from './pages/Home'
+import ClienteHome from './pages/ClienteHome'
+import { AdminProvider } from './context/useAdminContext'
+
+
+export default function App() {
 
 export default function App() {
   function PrivateRouteCliente({ children }) {
@@ -40,12 +50,13 @@ function PrivateRouteAdministrador({ children }) {
     <Routes>
       <Route path="/login" element={<Login />} />
 
-      {/* ADMIN */}
-      <Route path="/" element={
-        <PrivateRoute role="admin">
-          <Home />
-        </PrivateRoute>
-      } />
+     <Route path='/*' element={
+            <PrivateRouteAdministrador>
+              <AdminProvider>
+                <Home />
+              </AdminProvider>
+            </PrivateRouteAdministrador>
+              }></Route>
 
       <Route path="/productos" element={
         <PrivateRoute role="admin">

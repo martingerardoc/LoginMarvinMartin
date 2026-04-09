@@ -1,35 +1,32 @@
-import { useState, useEffect } from "react"
+import { useState,useEffect } from "react";
 
-export default function useFetch(endpoint) {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+export default function useFetch(url, setPedidos) {
+    const [data ,setData]=useState([])
+    const [loading ,setLoading]=useState(false)
+    const [error,setError]=useState("")
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const token = localStorage.getItem("token")
-
-        const res = await fetch(`https://api-funval-g6.onrender.com${endpoint}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          }
-        })
-
-        const json = await res.json()
-        if (!res.ok) throw new Error("Error")
-
-        setData(json)
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchData()
-  }, [endpoint])
-
-  return { data, loading, error }
+    useEffect(() => {
+        async function traerData() {
+            setLoading(true)
+            const token = localStorage.getItem("token")
+            try {
+                const res = await fetch(url, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
+                })
+            const data = await res.json()
+            setPedidos(data)
+            console.log(data)
+            }catch (error){
+                setError(error)
+            }finally{
+                setLoading(false)
+            }
+        }
+        if(url && setPedidos)traerData()
+    }, [url, setPedidos])
+    return{ loading, error}
 }
