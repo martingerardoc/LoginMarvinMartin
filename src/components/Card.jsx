@@ -1,5 +1,5 @@
-import React, { use, useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+
 export default function Card() {
     const [color ,setColor]=useState(true)
     useEffect(()=>{
