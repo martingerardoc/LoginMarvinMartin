@@ -4,9 +4,9 @@ import useFetch from "../hooks/useFetch"
 import LoadingSpinner from "../components/LoadingSpinner"
 import { AdminContext } from "../context/useAdminContext"
 import Pedidos from "./Pedidos"
-import Actualizar from "./Actualizar"
-import Eliminar from "./Eliminar"
 import Crear from "./Crear"
+import Productos from "./Productos"
+import Usuarios from "./Usuarios"
 
 export default function Home() {
     const {nombre, setPedidos} = useContext(AdminContext)
@@ -53,16 +53,17 @@ export default function Home() {
             <nav className='flex gap-4 p-10 items-center justify-center flex-wrap'>
                 <Link to="/pedidos" className='bg-[#155dfc] px-3 py-1 rounded-2xl hover:bg-[#155dfccc] font-semibold'>Ver Pedidos</Link>
                 <Link to="/crear" className='bg-[#155dfc] px-3 py-1 rounded-2xl hover:bg-[#155dfccc] font-semibold'>Crear</Link>
-                <Link to="/actualizar" className='bg-[#155dfc] px-3 py-1 rounded-2xl hover:bg-[#155dfccc] font-semibold'>Actualizar</Link>
-                <Link to="/eliminar" className='bg-[#155dfc] px-3 py-1 rounded-2xl hover:bg-[#155dfccc] font-semibold'>Eliminar</Link>
+                <Link to="/actualizar" className='bg-[#155dfc] px-3 py-1 rounded-2xl hover:bg-[#155dfccc] font-semibold'>Productos</Link>
+                <Link to="/usuarios" className='bg-[#155dfc] px-3 py-1 rounded-2xl hover:bg-[#155dfccc] font-semibold'>Usuarios</Link>
+                
             </nav>
             {/* Content */}
             <main>
                 <Routes>
                     <Route path="/pedidos" element={<Pedidos/>}></Route>
                     <Route path="/crear" element={<Crear/>}></Route>
-                    <Route path="/actualizar" element={<Actualizar/>}></Route>
-                    <Route path="/eliminar" element={<Eliminar/>}></Route>
+                    <Route path="/actualizar" element={<Productos/>}></Route>
+                    <Route path="/usuarios" element={<Usuarios/>}></Route>
                 </Routes>
             </main>
         </div>
