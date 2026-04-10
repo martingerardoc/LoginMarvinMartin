@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { apiFetch } from "../services/api"
+import Navbar from "../components/Navbar"
 
 export default function MisOrdenes() {
   const [ordenes, setOrdenes] = useState([])
@@ -14,6 +15,8 @@ export default function MisOrdenes() {
   }
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-slate-950 text-white p-6">
 
       <h2 className="text-2xl mb-6">Mis Órdenes</h2>
@@ -27,5 +30,6 @@ export default function MisOrdenes() {
         </div>
       ))}
     </div>
+    </>
   )
 }
