@@ -19,7 +19,6 @@ export default function useFetch(url, setPedidos) {
                 })
             const data = await res.json()
             setPedidos(data)
-            console.log(data)
             }catch (error){
                 setError(error)
             }finally{

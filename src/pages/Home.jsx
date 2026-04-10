@@ -7,6 +7,7 @@ import Pedidos from "./Pedidos"
 import Crear from "./Crear"
 import Productos from "./Productos"
 import Usuarios from "./Usuarios"
+import InitialPageAdmin from "../components/InitialPageAdmin"
 
 export default function Home() {
     const {nombre, setPedidos} = useContext(AdminContext)
@@ -35,7 +36,7 @@ export default function Home() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         </svg>
                     </div>
-                    <span className="font-bold text-lg tracking-tight">Sistema de Pedidos del administrador</span>
+                    <span className="font-bold text-lg tracking-tight">Panel de Control</span>
                 </div>
                 <div className="flex items-center gap-4">
                     <span className="text-slate-400 text-sm">Hola, <span className="text-white font-semibold">{nombre}</span></span>
@@ -60,11 +61,13 @@ export default function Home() {
             {/* Content */}
             <main>
                 <Routes>
+                    <Route path="" element={<InitialPageAdmin/>}></Route>
                     <Route path="/pedidos" element={<Pedidos/>}></Route>
                     <Route path="/crear" element={<Crear/>}></Route>
                     <Route path="/actualizar" element={<Productos/>}></Route>
                     <Route path="/usuarios" element={<Usuarios/>}></Route>
                 </Routes>
+                
             </main>
         </div>
         
